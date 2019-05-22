@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>เพิ่มห้องเรียน</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+   <script async type="text/javascript" src="/createRoom.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+      <section class="hero is-primary">
+          <div class="hero-body">
+              <div class="container" style="width: 50%; right: 0; padding: 0;margin-right: 0;" align="right">
+                  <h2> <%= user.type %> <a href="/userRout" style="right: 0;" class="btn btn-success">logout</a></h2>
+                  </div>
+            <div class="container">
+              <h1 class="title">
+                      <img src="https://lh5.googleusercontent.com/5uHYeEyLH244U5MvpngbUQUqfCzl0GVOPBKqVNObz7LkjOPKMazSxPrKL-1ztyNTpYMdheKgy3pM9pEcEquSj6hMw_H997VLIhQszJblblDpbs3YIgeWLbDgIWLOOLRn46qkFXNO" align="center" width="10%" height="10%">&emsp; เพิ่มห้อง <br clear="left">
+              </h1>
+            </div>
+          </div>
+  </section>
+    <div class="container">
+        <form method="POST" id="createroom" action="/roomRout/createroom/<%= user._id %> ">
+            <div class="form-group">
+                <label for="item">รหัสห้อง</label>
+                <input type="text" class="form-control" id="ID" name="ID">
+              </div>
+              <div class="form-group">
+                <label for="item">รหัสตึก</label>
+                <select name="building" id="building" class="form-control">
+                    <option value="" hidden>เลือก...</option>
+                    <% for(var i=0; i < building.length; i++) { %>
+                      <option value="IF"> <%= building[i].ID %></option>
+                      <% } %>
+                 
+                
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="item">ชั้น</label>
+                <input type="text" class="form-control" id="floor" name="floor">
+                
+              </div>
+
+
+              
+              
+         
+
+              <div class="text-center">
+                <br>
+                <button type="button" onclick="checkCreateroom()" class="button is-success  " >บันทึก</button>
+                <a class="btn btn-danger " href="/roomRout/room/<%= user._id %>">ถอยกลับ</a>
+              </div>
+          
+          
+        </form>
+    </div>
+  </body>
+</html>

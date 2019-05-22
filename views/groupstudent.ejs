@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>เพิ่มนิสิตลงกลุ่ม</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script async type="text/javascript" src="/groupstudent.js"></script>
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container" style="width: 50%; right: 0; padding: 0;margin-right: 0;" align="right">
+                <h2>
+                    <%= user.type %> <a href="/userRout" style="right: 0;" class="btn btn-success">logout</a></h2>
+            </div>
+            <div class="container">
+                <h1 class="title">
+                    <img src="https://lh5.googleusercontent.com/5uHYeEyLH244U5MvpngbUQUqfCzl0GVOPBKqVNObz7LkjOPKMazSxPrKL-1ztyNTpYMdheKgy3pM9pEcEquSj6hMw_H997VLIhQszJblblDpbs3YIgeWLbDgIWLOOLRn46qkFXNO" align="center" width="10%" height="10%">&emsp; เพิ่มนิสิต
+                    <br clear="left">
+                </h1>
+            </div>
+            <div align="right">
+                ปีการศึกษา
+                <%= group.subject.year %> ภาคเรียน
+                    <%= group.subject.semester %>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <div class="container-fluid" style="margin-bottom: 100%;margin: 0%;">
+        <div class="row" style="height: 543px;">
+            <nav class="col-sm-2" style="background-color: black; width: 10%;">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/userRout/users/<%= user._id%>">จัดการบุคลากร</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/buildRout/building/<%= user._id%>">จัดการตึก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roomRout/room/<%= user._id%>">จัดการห้อง</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  " href="/subjectRout/subjects/<%= user._id%>">รายวิชา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/semesterRout/semester/<%= user._id%>">ปีการศึกษา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/examRout/exam/<%= user._id%>">การสอบ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/groupRout/group/<%= user._id%>">กลุ่มเรียน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  " href="/userRout/staff/<%= user._id%>">คุมสอบ</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <center style="width: 83%;">
+
+                <div class="container">
+                    <div class="class">รหัสนิสิต</div>
+                    <form id="addstudent" method="post" action="/groupRout/addstudent/<%= group._id %>/<%= user._id%>">
+                        <input type="text" list="browsers" class="is-half" name="username" id="username" value="">
+                        <datalist id="browsers">
+
+                            <% for(var i=0; i < users.length; i++) { %>
+
+
+                            <option value="<%= users[i].username%>"><%= users[i].firstName %> <%=users[i].lastName %>
+                            </option>
+
+                            <% } %>
+                        </datalist>
+                        <button type="button" class="btn btn-success" onclick="checkgroupstudent()">เพิ่ม</button>
+                    </form>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td><b>รหัสนิสิต</b></td>
+
+                                <td><b>ชื่อ</b></td>
+
+                                <td colspan="2"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < group.student.length; i++) { %>
+                                <tr>
+
+                                    <td>
+                                        <%= group.student[i].username %>
+                                    </td>
+                                    <td>
+                                        <%= group.student[i].firstName %>
+                                            <%= group.student[i].lastName %>
+                                    </td>
+
+                                    <td><a href="/groupRout/deletestudent/<%= group._id %>/<%= group.student[i]._id %>/<%= user._id %>" class="btn btn-danger">ลบ</a></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a href="/groupRout/group/<%= user._id %>" class="btn btn-success">ย้อนกลับ</a>
+                </div>
+            </center>
+        </div>
+    </div>
+</body>
+
+</html>

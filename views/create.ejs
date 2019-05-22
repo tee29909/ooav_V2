@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>เพิ่มผู้ใช้</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script async type="text/javascript" src="/createuser.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container" style="width: 50%; right: 0; padding: 0;margin-right: 0;" align="right">
+                <h2>
+                    <%= user.type %> <a href="/userRout" style="right: 0;" class="btn btn-success">logout</a></h2>
+            </div>
+            <div class="container">
+                <h1 class="title">
+                    <img src="https://lh5.googleusercontent.com/5uHYeEyLH244U5MvpngbUQUqfCzl0GVOPBKqVNObz7LkjOPKMazSxPrKL-1ztyNTpYMdheKgy3pM9pEcEquSj6hMw_H997VLIhQszJblblDpbs3YIgeWLbDgIWLOOLRn46qkFXNO" align="center" width="10%" height="10%">&emsp; เพิ่มผู้ใช้
+                    <br clear="left">
+                </h1>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <form id="us" method="POST" action="/userRout/create/<%= user._id%>">
+            <div class="form-group">
+                <label for="item">Username</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="item">password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+
+
+            <div class="form-group">
+                <label for="item">ชื่อ</label>
+                <input type="text" class="form-control" id="firstName" name="firstName">
+            </div>
+
+            <div class="form-group">
+                <label for="item">นามสกุล</label>
+                <input type="text" class="form-control" id="lastName" name="lastName">
+            </div>
+            <div class="form-group">
+                <label for="item">สถานะ</label>
+                <select name="type" id="type" class="form-control">
+              <option value="" hidden>เลือก...</option>
+              <option value="นิสิต">นิสิต</option>
+              <option value="อาจารย์">อาจารย์</option>
+              <option value="เจ้าหน้าที่">เจ้าหน้าที่</option>
+            </select>
+            </div>
+            <div class="text-center">
+                <br>
+                <button type="button" class="button is-success  " onclick="checknull()">บันทึก</button>
+                <a class="btn btn-danger " href="/userRout/users/<%= user._id%>">ถอยกลับ</a>
+            </div>
+
+        </form>
+
+    </div>
+</body>
+
+</html>

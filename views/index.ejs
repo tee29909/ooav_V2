@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>user</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td><b>username</b></td>
+            <td><b>password</b></td>
+            <td><b>type</b></td>
+            <td colspan="2"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < users.length; i++) { %>
+          <tr>
+            <td><%= users[i].username %></td>
+            <td><%= users[i].password %></td>
+            <td><%= users[i].type %></td>  
+            <td><a href="/users/edit/<%= users[i]._id %>" class="btn btn-primary">Edit</a></td>
+            <td><a href="/users/delete/<%= users[i]._id %>" class="btn btn-danger">Delete</a></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <a href="/users/create" class="btn btn-success">add user to database</a>
+      <a href="/users/login" class="btn btn-success">page login</a>
+    </div>
+  </body>
+</html>

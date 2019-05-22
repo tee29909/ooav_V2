@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>login</title>
+ 
+    
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+
+
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+                    <img src="https://lh5.googleusercontent.com/5uHYeEyLH244U5MvpngbUQUqfCzl0GVOPBKqVNObz7LkjOPKMazSxPrKL-1ztyNTpYMdheKgy3pM9pEcEquSj6hMw_H997VLIhQszJblblDpbs3YIgeWLbDgIWLOOLRn46qkFXNO" align="center" width="10%" height="10%">&emsp; LOGIN <br clear="left">
+            </h1>
+          </div>
+        </div>
+</section>
+
+<section class="hero is-lightgreen ">
+    <div class="hero-body ">
+      <div class="container is-bold">
+        <br>
+      </div>
+    </div>
+</section>
+
+
+
+  <form method="post" action="/userRout/login">
+    <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered">
+            <article class="card is-rounded">
+              <div class="card-content">
+                
+            <h1>Username:</h1>
+            <input type="text" class="input is40 is-large form-control" name="username" placeholder="username"><br>
+             <h1>Password:</h1>
+            <input type="password" class="input is40 is-large form-control" name="password" placeholder="password" >
+            <% if(err){ %>
+              <p>incorect username or password</p>
+            <% } %>
+          <button type="submit" class="input button is-success  btn btn-default" style=" margin-top: 30px">login</button>
+        </div>
+        </article>
+    </div>
+  </div>
+</div>
+
+   
+    
+</form>
+
+</body>
+
+</html>

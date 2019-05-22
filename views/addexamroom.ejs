@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>เพิ่มห้องสอบ</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script async type="text/javascript" src="/examroom.js"></script>
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container" style="width: 50%; right: 0; padding: 0;margin-right: 0;" align="right">
+                <h2>
+                    <%= user.type %> <a href="/userRout" style="right: 0;" class="btn btn-success">logout</a></h2>
+            </div>
+            <div class="container">
+                <h1 class="title">
+                    <img src="https://lh5.googleusercontent.com/5uHYeEyLH244U5MvpngbUQUqfCzl0GVOPBKqVNObz7LkjOPKMazSxPrKL-1ztyNTpYMdheKgy3pM9pEcEquSj6hMw_H997VLIhQszJblblDpbs3YIgeWLbDgIWLOOLRn46qkFXNO" align="center" width="10%" height="10%">&emsp; เพิ่มห้องสอบ
+                    <br clear="left">
+                </h1>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+    <div class="container-fluid" style="margin-bottom: 100%;margin: 0%;">
+        <div class="row" style="height: 543px;">
+            <nav class="col-sm-2" style="background-color: black; width: 10%;">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/userRout/users/<%= user._id%>">จัดการบุคลากร</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buildRout/building/<%= user._id%>">จัดการตึก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roomRout/room/<%= user._id%>">จัดการห้อง</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/subjectRout/subjects/<%= user._id%>">รายวิชา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/semesterRout/semester/<%= user._id%>">ปีการศึกษา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/examRout/exam/<%= user._id%>">การสอบ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/groupRout/group/<%= user._id%>">กลุ่มเรียน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  " href="/userRout/staff/<%= user._id%>">คุมสอบ</a>
+                    </li>
+                </ul>
+            </nav>
+            <center style="width: 83%;">
+
+                <div class="container">
+
+
+                    <form id="addexamroom" method="post" action="/examRout/addexamroom/<%= exam._id %>/<%= user._id %>">
+
+
+                        <div class="class">ห้องสอบ</div>
+                        <select name="type2" id="type2" class="form-control" value="">
+
+                            <option value="" hidden></option>
+                            <% for(var i=0; i < room.length; i++) { %>
+                                <option value="<%= room[i]._id %>"><%= room[i].building %> <%= room[i].ID %></option>
+                                <% } %>
+
+                        </select>
+                        <button type="button" class="btn btn-success" onclick="checkexamroom()">เพิ่ม</button>
+
+                    </form>
+
+
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td><b>รหัสวิชา</b></td>
+
+                                <td><b>ห้อง</b></td>
+
+                                <td colspan="2"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < exam.ID_Room.length; i++) { %>
+
+
+                                <tr>
+
+                                    <td>
+                                        <%= exam.ID_Subject.ID %>
+                                    </td>
+                                    <td>
+                                        <%= exam.ID_Room[i].building %>
+                                            <%= exam.ID_Room[i].ID %>
+                                    </td>
+
+                                    <td><a href="/examRout/deleteexamroom/<%= exam._id %>/<%= exam.ID_Room[i]._id %>/<%= user._id %>" class="btn btn-danger">ลบ</a></td>
+                                </tr>
+
+                                <% } %>
+
+                        </tbody>
+                    </table>
+                    <br>
+
+
+
+                    <a href="/examRout/groupexam/<%= exam.ID_Subject._id %>/<%= user._id %>" class="btn btn-success">ยกเลิก</a>
+
+
+                </div>
+            </center>
+        </div>
+    </div>
+</body>
+
+</html>
